@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { PostDetail } from "./PostDetail";
 import { useQuery } from "react-query";
 
@@ -17,7 +16,9 @@ export default function Posts() {
   const [selectedPost, setSelectedPost] = useState(null);
 
   // replace with useQuery
-  const { data, isError, error, isLoading } = useQuery("posts", fetchPosts);
+  const { data, isError, error, isLoading } = useQuery("posts", fetchPosts, {
+    staleTime: 2000,
+  });
 
   if (isLoading) {
     return <h3>Loading...</h3>;
